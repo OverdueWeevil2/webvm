@@ -7,4 +7,6 @@ RUN apk update
 RUN apk upgrade
 RUN apk fix
 RUN rm -rf /var/cache
+WORKDIR /root
+ENV HOME="/root" TERM="xterm" USER="root" SHELL="/bin/ash" LANG="en_US.UTF-8" LC_ALL="C"
 CMD [ "/bin/ash", "-l" ]
