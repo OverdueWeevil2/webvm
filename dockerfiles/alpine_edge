@@ -1,0 +1,10 @@
+FROM --platform=i386 i386/alpine:edge
+RUN rm -rf /var/cache
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main > /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+RUN apk update
+RUN apk upgrade
+RUN apk fix
+RUN rm -rf /var/cache
+CMD [ "/bin/ash", "-l" ]
