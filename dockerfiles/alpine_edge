@@ -1,12 +1,13 @@
 FROM --platform=i386 i386/alpine:edge
-RUN rm -rf /var/cache
+RUN rm -rf /var/cache /var/log
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main > /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 RUN apk update
 RUN apk upgrade
 RUN apk fix
-RUN rm -rf /var/cache
-WORKDIR /root
-ENV HOME="/root" TERM="xterm" USER="root" SHELL="/bin/ash" LANG="en_US.UTF-8" LC_ALL="C"
+RUN setup-user -g "audio,video,netdev" -a -u user
+RUN rm -rf /var/cache /var/log
+WORKDIR /home/user
+ENV HOME="/home/user" USER="user" TERM="xterm-256color" SHELL="/bin/ash"
 CMD [ "/bin/ash", "-l" ]
