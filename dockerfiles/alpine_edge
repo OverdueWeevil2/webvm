@@ -6,7 +6,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositor
 RUN apk update
 RUN apk upgrade
 RUN apk fix
-RUN apk add alpine-conf
+RUN apk add command-not-found coreutils util-linux util-linux-login ncurses procps-compat procps-ng psmisc alpine-base alpine-conf sudo doas
 RUN setup-user -g "audio,video,netdev" -a -u user
 RUN rm -rf /var/cache /var/log
 WORKDIR /home/user
