@@ -8,6 +8,8 @@ RUN apk upgrade
 RUN apk fix
 RUN apk add command-not-found coreutils util-linux util-linux-login ncurses procps-compat procps-ng psmisc alpine-base alpine-conf sudo doas
 RUN setup-user -g "audio,video,netdev" -a -u user
+RUN echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "permit nopass :wheel" > /etc/doas.d/doas.conf
 RUN rm -rf /var/cache /var/log
 WORKDIR /home/user
 ENV HOME="/home/user" USER="user" TERM="xterm-256color" SHELL="/bin/ash"
